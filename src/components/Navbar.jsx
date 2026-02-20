@@ -1,0 +1,138 @@
+import React, { useState } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const Navbar = () => {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+
+    const navLinks = [
+        { name: '회사소개', href: '/about' },
+        { name: '제품정보', href: '/products' },
+        { name: '사업분야', href: '/business' },
+        { name: '고객센터', href: '/customer' },
+        {
+            name: '직영몰',
+            href: '#',
+            dropdown: [
+                { name: '프로셀 (PROSAL)', href: '#' },
+                { name: '헤파 (HEPHA)', href: '#' },
+                { name: '쉬메릭 (CHIMERIC)', href: '#' },
+                { name: '네이버 블로그', href: '#' },
+                { name: '유튜브', href: '#' }
+            ]
+        },
+    ];
+
+    return (
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
+            <div className="max-w-[1600px] mx-auto px-6 h-20 flex justify-between items-center">
+                {/* Logo */}
+                <div className="flex items-center">
+                    <Link to="/" className="flex items-center">
+                        <img
+                            src="/logo02.jpg"
+                            alt="HEUNGJE INT"
+                            className="h-12"
+                        />
+                    </Link>
+                </div>
+
+                <div className="hidden md:flex space-x-10 items-center">
+                    {navLinks.map((link) => (
+                        <div
+                            key={link.name}
+                            className="relative group h-full flex items-center"
+                        >
+                            {link.dropdown ? (
+                                <>
+                                    <button className="flex items-center text-sm font-medium text-[#231F20] group-hover:text-[#50B849] transition-colors gap-1 h-full">
+                                        {link.name}
+                                        <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:-rotate-180" />
+                                    </button>
+
+                                    {/* Desktop Dropdown Layer */}
+                                    <div className="absolute top-14 left-1/2 -translate-x-1/2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl flex flex-col py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                                        {/* Invisible hover bridge */}
+                                        <div className="absolute -top-4 left-0 right-0 h-4 bg-transparent"></div>
+                                        {link.dropdown.map((subItem) => (
+                                            <a
+                                                key={subItem.name}
+                                                href={subItem.href}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="px-5 py-3 text-sm text-[#231F20] hover:text-[#50B849] hover:bg-green-50/50 transition-colors"
+                                            >
+                                                {subItem.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <Link
+                                    to={link.href}
+                                    className="text-sm font-medium text-[#231F20] hover:text-[#50B849] transition-colors"
+                                >
+                                    {link.name}
+                                </Link>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="md:hidden text-[#231F20] p-2"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                    {isMobileMenuOpen ? <X /> : <Menu />}
+                </button>
+            </div>
+
+            {/* Mobile Menu Dropdown */}
+            {isMobileMenuOpen && (
+                <div className="md:hidden bg-white border-t border-gray-100 absolute top-full left-0 right-0 py-4 px-6 flex flex-col space-y-2 shadow-lg max-h-[80vh] overflow-y-auto">
+                    {navLinks.map((link) => (
+                        <div key={link.name}>
+                            {link.dropdown ? (
+                                <div className="space-y-1">
+                                    <button
+                                        onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+                                        className="flex items-center justify-between w-full py-3 text-base font-bold text-[#231F20]"
+                                    >
+                                        {link.name}
+                                        <ChevronDown className={`w-5 h-5 transition-transform ${isMobileDropdownOpen ? 'rotate-180 text-[#50B849]' : ''}`} />
+                                    </button>
+                                    <div className={`flex flex-col space-y-1 pl-4 overflow-hidden transition-all duration-300 ${isMobileDropdownOpen ? 'max-h-64 opacity-100 pb-2' : 'max-h-0 opacity-0'}`}>
+                                        {link.dropdown.map((subItem) => (
+                                            <a
+                                                key={subItem.name}
+                                                href={subItem.href}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="block py-2 text-sm text-gray-600 hover:text-[#50B849]"
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                            >
+                                                {subItem.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <Link
+                                    to={link.href}
+                                    className="block py-3 text-base font-bold text-[#231F20] hover:text-[#50B849] border-b border-gray-50 last:border-0"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {link.name}
+                                </Link>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </nav>
+    );
+};
+
+export default Navbar;
