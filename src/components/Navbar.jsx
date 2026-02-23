@@ -8,7 +8,15 @@ const Navbar = () => {
 
     const navLinks = [
         { name: '회사소개', href: '/about' },
-        { name: '제품정보', href: '/products' },
+        {
+            name: '제품정보',
+            href: '/products',
+            dropdown: [
+                { name: '프로살 (PROSAL)', href: '/products#brand-prosal', isInternal: true },
+                { name: '헤파 (HEPHA)', href: '/products#brand-hepha', isInternal: true },
+                { name: '기타 브랜드', href: '/products#brand-others', isInternal: true }
+            ]
+        },
         { name: '사업분야', href: '/business' },
         { name: '고객센터', href: '/customer' },
         {
@@ -56,15 +64,25 @@ const Navbar = () => {
                                         {/* Invisible hover bridge */}
                                         <div className="absolute -top-4 left-0 right-0 h-4 bg-transparent"></div>
                                         {link.dropdown.map((subItem) => (
-                                            <a
-                                                key={subItem.name}
-                                                href={subItem.href}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="px-5 py-3 text-sm text-[#231F20] hover:text-[#50B849] hover:bg-green-50/50 transition-colors"
-                                            >
-                                                {subItem.name}
-                                            </a>
+                                            subItem.isInternal ? (
+                                                <Link
+                                                    key={subItem.name}
+                                                    to={subItem.href}
+                                                    className="px-5 py-3 text-sm text-[#231F20] hover:text-[#50B849] hover:bg-green-50/50 transition-colors"
+                                                >
+                                                    {subItem.name}
+                                                </Link>
+                                            ) : (
+                                                <a
+                                                    key={subItem.name}
+                                                    href={subItem.href}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="px-5 py-3 text-sm text-[#231F20] hover:text-[#50B849] hover:bg-green-50/50 transition-colors"
+                                                >
+                                                    {subItem.name}
+                                                </a>
+                                            )
                                         ))}
                                     </div>
                                 </>
@@ -105,16 +123,27 @@ const Navbar = () => {
                                     </button>
                                     <div className={`flex flex-col space-y-1 pl-4 overflow-hidden transition-all duration-300 ${isMobileDropdownOpen ? 'max-h-64 opacity-100 pb-2' : 'max-h-0 opacity-0'}`}>
                                         {link.dropdown.map((subItem) => (
-                                            <a
-                                                key={subItem.name}
-                                                href={subItem.href}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="block py-2 text-sm text-gray-600 hover:text-[#50B849]"
-                                                onClick={() => setIsMobileMenuOpen(false)}
-                                            >
-                                                {subItem.name}
-                                            </a>
+                                            subItem.isInternal ? (
+                                                <Link
+                                                    key={subItem.name}
+                                                    to={subItem.href}
+                                                    className="block py-2 text-sm text-gray-600 hover:text-[#50B849]"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                >
+                                                    {subItem.name}
+                                                </Link>
+                                            ) : (
+                                                <a
+                                                    key={subItem.name}
+                                                    href={subItem.href}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="block py-2 text-sm text-gray-600 hover:text-[#50B849]"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                >
+                                                    {subItem.name}
+                                                </a>
+                                            )
                                         ))}
                                     </div>
                                 </div>

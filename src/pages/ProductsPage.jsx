@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const ProductsPage = () => {
+    const { hash } = useLocation();
+
+    useEffect(() => {
+        if (hash) {
+            const element = document.getElementById(hash.replace('#', ''));
+            if (element) {
+                setTimeout(() => {
+                    const yOffset = -100; // Account for fixed navbar
+                    const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }, 100);
+            }
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, [hash]);
+
     // Placeholder data generators
     const prosalProducts = Array.from({ length: 7 }, (_, i) => ({
         id: `prosal-${i}`,
