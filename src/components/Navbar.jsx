@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -96,6 +96,24 @@ const Navbar = () => {
                             )}
                         </div>
                     ))}
+
+                    {/* Language Switcher */}
+                    <div className="relative group h-full flex items-center ml-4 border-l border-gray-200 pl-8">
+                        <button className="flex items-center text-sm font-medium text-[#231F20] group-hover:text-[#50B849] transition-colors gap-1 h-full">
+                            <Globe className="w-4 h-4" />
+                            <span>KR</span>
+                            <ChevronDown className="w-3 h-3 transition-transform duration-300 group-hover:-rotate-180 ml-1" />
+                        </button>
+                        <div className="absolute top-14 right-0 w-32 bg-white border border-gray-100 rounded-xl shadow-xl flex flex-col py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                            <div className="absolute -top-4 right-0 left-0 h-4 bg-transparent"></div>
+                            <button className="px-5 py-3 text-sm text-left text-[#50B849] font-bold bg-green-50/30 w-full">
+                                한국어 (KR)
+                            </button>
+                            <button className="px-5 py-3 text-sm text-left text-gray-500 hover:text-[#231F20] hover:bg-gray-50 transition-colors w-full">
+                                English (EN)
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Mobile Menu Button */}
@@ -158,6 +176,24 @@ const Navbar = () => {
                             )}
                         </div>
                     ))}
+
+                    {/* Mobile Language Switcher */}
+                    <div className="pt-4 mt-2 border-t border-gray-100">
+                        <div className="flex items-center justify-between py-2">
+                            <span className="flex items-center text-sm font-bold text-gray-500 gap-2">
+                                <Globe className="w-4 h-4" />
+                                언어 선택
+                            </span>
+                            <div className="flex bg-gray-100 rounded-lg p-1">
+                                <button className="px-4 py-1.5 text-sm font-bold bg-white text-[#50B849] rounded-md shadow-sm">
+                                    KR
+                                </button>
+                                <button className="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors rounded-md">
+                                    EN
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
         </nav>
