@@ -108,17 +108,17 @@ const About = () => {
                     <p className="text-gray-500 mt-4 max-w-2xl mx-auto">글로벌 경쟁력을 갖춘 체계적인 조직으로 고객의 니즈에 신속하게 대응합니다.</p>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center w-full">
                     {/* CEO / Top Level */}
-                    <div className="w-full max-w-md bg-gradient-to-r from-gray-900 to-[#231F20] text-white py-5 px-8 rounded-xl shadow-lg border-2 border-[#50B849] text-center relative z-10">
+                    <div className="w-full max-w-md bg-gradient-to-r from-gray-900 to-[#231F20] text-white py-5 px-8 rounded-xl shadow-lg border-2 border-[#50B849] text-center relative z-10 w-full sm:w-auto">
                         <h4 className="text-2xl font-bold tracking-widest">대표이사</h4>
                     </div>
 
-                    {/* Connecting Line Vertical */}
-                    <div className="w-1 h-12 bg-gray-300"></div>
+                    {/* Connecting Line Vertical Base */}
+                    <div className="w-1 h-8 md:h-12 bg-gray-300 relative z-0"></div>
 
-                    {/* Connecting Line Horizontal */}
-                    <div className="w-full max-w-4xl h-1 bg-gray-300 relative">
+                    {/* Connecting Line Horizontal (Desktop Only) */}
+                    <div className="hidden md:block w-full max-w-4xl h-1 bg-gray-300 relative">
                         {/* Downward ticks */}
                         <div className="absolute left-0 top-0 w-1 h-6 bg-gray-300"></div>
                         <div className="absolute left-1/4 top-0 w-1 h-6 bg-gray-300 -translate-x-px"></div>
@@ -128,7 +128,8 @@ const About = () => {
                     </div>
 
                     {/* Departments Level */}
-                    <div className="w-full max-w-5xl flex justify-between pt-6 gap-4">
+                    <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between pt-8 md:pt-6 gap-4 md:gap-4 relative mt-0 md:bg-transparent bg-gray-50/80 md:border-transparent border border-gray-200 p-6 md:p-0 rounded-3xl md:rounded-none">
+
                         {[
                             { name: "관리부", desc: "경영기획 및 지원" },
                             { name: "생산부", desc: "국내외 공장 통합관리" },
@@ -136,12 +137,12 @@ const About = () => {
                             { name: "국내영업부", desc: "B2B 영업 및 판매망 강화" },
                             { name: "해외영업부", desc: "글로벌 소싱 및 수출 담당" }
                         ].map((dept, idx) => (
-                            <div key={idx} className="flex-1 bg-white border border-gray-200 py-6 px-4 rounded-xl shadow-sm hover:shadow-md hover:border-[#50B849] transition-all duration-300 flex flex-col items-center justify-center text-center group cursor-default">
-                                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#50B849]/10 transition-colors">
-                                    <span className="text-xl font-black text-gray-400 group-hover:text-[#50B849] transition-colors">0{idx + 1}</span>
+                            <div key={idx} className="relative z-10 w-full max-w-xs sm:max-w-sm mx-auto md:max-w-none md:flex-1 bg-white border border-gray-200 py-6 px-4 flex flex-col items-center justify-center rounded-2xl shadow-sm hover:shadow-md hover:border-[#50B849] transition-all duration-300 text-center group cursor-default">
+                                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-[#50B849]/10 transition-colors ring-4 ring-white">
+                                    <span className="text-xl font-black text-gray-300 group-hover:text-[#50B849] transition-colors">{idx + 1}</span>
                                 </div>
                                 <h5 className="font-bold text-[#231F20] text-lg mb-2 whitespace-nowrap">{dept.name}</h5>
-                                <p className="text-xs text-gray-500 break-keep leading-tight">{dept.desc}</p>
+                                <p className="text-xs lg:text-xs xl:text-sm text-gray-500 break-keep leading-tight">{dept.desc}</p>
                             </div>
                         ))}
                     </div>

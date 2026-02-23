@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const ProductsPage = () => {
     // Placeholder data generators
@@ -30,32 +31,34 @@ const ProductsPage = () => {
     const ProductCard = ({ product }) => (
         <motion.div
             whileHover={{ y: -5 }}
-            className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col h-full"
+            className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col h-full cursor-pointer cursor-default hover:border-[#50B849]"
         >
-            {/* Image Container */}
-            <div className="bg-white p-6 aspect-square flex items-center justify-center relative overflow-hidden cursor-pointer">
-                {/* Dark overlay and text shown on hover */}
-                <div className="absolute inset-0 group-hover:bg-black/50 transition-colors duration-300 z-20 flex items-center justify-center">
-                    <span className="text-white font-bold tracking-wider text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg">상세보기</span>
+            <Link to={`/products/${product.id}`} className="flex flex-col h-full w-full">
+                {/* Image Container */}
+                <div className="bg-white p-6 aspect-square flex items-center justify-center relative overflow-hidden">
+                    {/* Dark overlay and text shown on hover */}
+                    <div className="absolute inset-0 group-hover:bg-black/50 transition-colors duration-300 z-20 flex items-center justify-center">
+                        <span className="text-white font-bold tracking-wider text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg">상세보기</span>
+                    </div>
+                    <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-contain relative z-10 drop-shadow-md group-hover:scale-110 transition-transform duration-500"
+                    />
                 </div>
-                <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-contain relative z-10 drop-shadow-md group-hover:scale-110 transition-transform duration-500"
-                />
-            </div>
-            {/* Content */}
-            <div className="p-6 flex flex-col flex-grow bg-gray-50/30">
-                <div className="flex gap-2 mb-3">
-                    {product.tags.map((tag, idx) => (
-                        <span key={idx} className="px-2.5 py-1 bg-white border border-[#50B849]/30 text-[#50B849] text-xs rounded-md font-bold">
-                            {tag}
-                        </span>
-                    ))}
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow bg-gray-50/30">
+                    <div className="flex gap-2 mb-3">
+                        {product.tags.map((tag, idx) => (
+                            <span key={idx} className="px-2.5 py-1 bg-white border border-[#50B849]/30 text-[#50B849] text-xs rounded-md font-bold">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                    <h4 className="font-bold text-xl text-[#231F20] mb-2 line-clamp-1">{product.name}</h4>
+                    <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed flex-grow">{product.desc}</p>
                 </div>
-                <h4 className="font-bold text-xl text-[#231F20] mb-2 line-clamp-1">{product.name}</h4>
-                <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed flex-grow">{product.desc}</p>
-            </div>
+            </Link>
         </motion.div>
     );
 
