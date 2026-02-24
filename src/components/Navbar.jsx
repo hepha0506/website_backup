@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
-    const navLinks = [
+    const location = useLocation();
+    const isEn = location.pathname.startsWith('/en');
+
+    const krNavLinks = [
         { name: '회사소개', href: '/about' },
         {
             name: '제품정보',
@@ -32,12 +35,48 @@ const Navbar = () => {
         },
     ];
 
+    const enNavLinks = [
+        { name: 'About Us', href: '/en/about' },
+        {
+            name: 'Products',
+            href: '/en/products',
+            dropdown: [
+                { name: 'Cut resistance', href: '/en/products#cut-resistance', isInternal: true },
+                { name: 'ESD copper', href: '/en/products#esd-copper', isInternal: true },
+                { name: 'ESD carbon', href: '/en/products#esd-carbon', isInternal: true },
+                { name: 'ESD nylon', href: '/en/products#esd-nylon', isInternal: true },
+                { name: 'Heat resistance', href: '/en/products#heat-resistance', isInternal: true },
+                { name: 'General purpose', href: '/en/products#general-purpose', isInternal: true },
+                { name: 'New technology', href: '/en/products#new-technology', isInternal: true },
+                { name: 'Brochure', href: '#', isInternal: true }
+            ]
+        },
+        {
+            name: 'Technology',
+            href: '/en/technology',
+            dropdown: [
+                { name: 'Korean made HPPE gloves', href: '/en/technology#korean-hppe', isInternal: true },
+                { name: 'Soft PU coating', href: '/en/technology#soft-pu', isInternal: true },
+                { name: 'NBR coating', href: '/en/technology#nbr', isInternal: true },
+                { name: 'Smart touch', href: '/en/technology#smart-touch', isInternal: true },
+                { name: 'Easy grip', href: '/en/technology#easy-grip', isInternal: true },
+                { name: 'ESD protection', href: '/en/technology#esd-protection', isInternal: true },
+                { name: 'Coreless, Eco- friendly, Highest level protection', href: '/en/technology#coreless', isInternal: true }
+            ]
+        },
+        { name: 'Certifications & Patents', href: '/en/certifications' },
+        { name: 'NEWS', href: '/en/news' },
+        { name: 'Contact', href: '/en/contact' }
+    ];
+
+    const navLinks = isEn ? enNavLinks : krNavLinks;
+
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
             <div className="max-w-[1600px] mx-auto px-6 h-20 flex justify-between items-center">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link to="/" className="flex items-center">
+                    <Link to={isEn ? '/en' : '/'} className="flex items-center">
                         <img
                             src="/logo02.jpg"
                             alt="HEUNGJE INT"
@@ -101,17 +140,23 @@ const Navbar = () => {
                     <div className="relative group h-full flex items-center ml-4 border-l border-gray-200 pl-8">
                         <button className="flex items-center text-sm font-medium text-[#231F20] group-hover:text-[#50B849] transition-colors gap-1 h-full">
                             <Globe className="w-4 h-4" />
-                            <span>KR</span>
+                            <span>{isEn ? 'EN' : 'KR'}</span>
                             <ChevronDown className="w-3 h-3 transition-transform duration-300 group-hover:-rotate-180 ml-1" />
                         </button>
-                        <div className="absolute top-14 right-0 w-32 bg-white border border-gray-100 rounded-xl shadow-xl flex flex-col py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                        <div className="absolute top-14 right-0 w-32 bg-white border border-gray-100 rounded-xl shadow-xl flex flex-col py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
                             <div className="absolute -top-4 right-0 left-0 h-4 bg-transparent"></div>
-                            <button className="px-5 py-3 text-sm text-left text-[#50B849] font-bold bg-green-50/30 w-full">
+                            <Link
+                                to="/"
+                                className={`px-5 py-3 text-sm text-left transition-colors w-full ${!isEn ? 'text-[#50B849] font-bold bg-green-50/30' : 'text-gray-500 hover:text-[#231F20] hover:bg-gray-50'}`}
+                            >
                                 한국어 (KR)
-                            </button>
-                            <button className="px-5 py-3 text-sm text-left text-gray-500 hover:text-[#231F20] hover:bg-gray-50 transition-colors w-full">
+                            </Link>
+                            <Link
+                                to="/en"
+                                className={`px-5 py-3 text-sm text-left transition-colors w-full ${isEn ? 'text-[#50B849] font-bold bg-green-50/30' : 'text-gray-500 hover:text-[#231F20] hover:bg-gray-50'}`}
+                            >
                                 English (EN)
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -185,12 +230,20 @@ const Navbar = () => {
                                 언어 선택
                             </span>
                             <div className="flex bg-gray-100 rounded-lg p-1">
-                                <button className="px-4 py-1.5 text-sm font-bold bg-white text-[#50B849] rounded-md shadow-sm">
+                                <Link
+                                    to="/"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={`px-4 py-1.5 text-sm transition-colors rounded-md ${!isEn ? 'font-bold bg-white text-[#50B849] shadow-sm' : 'font-medium text-gray-500 hover:text-gray-800'}`}
+                                >
                                     KR
-                                </button>
-                                <button className="px-4 py-1.5 text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors rounded-md">
+                                </Link>
+                                <Link
+                                    to="/en"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={`px-4 py-1.5 text-sm transition-colors rounded-md ${isEn ? 'font-bold bg-white text-[#50B849] shadow-sm' : 'font-medium text-gray-500 hover:text-gray-800'}`}
+                                >
                                     EN
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
