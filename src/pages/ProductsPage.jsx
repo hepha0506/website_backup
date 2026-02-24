@@ -48,14 +48,14 @@ const ProductsPage = () => {
     const ProductCard = ({ product }) => (
         <motion.div
             whileHover={{ y: -5 }}
-            className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col h-full cursor-pointer cursor-default hover:border-[#50B849]"
+            className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col h-full cursor-pointer hover:border-[#50B849]"
         >
             <Link to={`/products/${product.id}`} className="flex flex-col h-full w-full">
                 {/* Image Container */}
-                <div className="bg-white p-6 aspect-square flex items-center justify-center relative overflow-hidden">
+                <div className="bg-white p-4 md:p-6 aspect-square flex items-center justify-center relative overflow-hidden">
                     {/* Dark overlay and text shown on hover */}
                     <div className="absolute inset-0 group-hover:bg-black/50 transition-colors duration-300 z-20 flex items-center justify-center">
-                        <span className="text-white font-bold tracking-wider text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg">상세보기</span>
+                        <span className="text-white font-bold tracking-wider text-sm md:text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg text-center px-2">상세보기</span>
                     </div>
                     <img
                         src={product.image}
@@ -64,16 +64,16 @@ const ProductsPage = () => {
                     />
                 </div>
                 {/* Content */}
-                <div className="p-6 flex flex-col flex-grow bg-gray-50/30">
-                    <div className="flex gap-2 mb-3">
+                <div className="p-4 md:p-6 flex flex-col flex-grow bg-gray-50/30">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3">
                         {product.tags.map((tag, idx) => (
-                            <span key={idx} className="px-2.5 py-1 bg-white border border-[#50B849]/30 text-[#50B849] text-xs rounded-md font-bold">
+                            <span key={idx} className="px-2 py-0.5 md:px-2.5 md:py-1 bg-white border border-[#50B849]/30 text-[#50B849] text-[10px] md:text-xs rounded-md font-bold whitespace-nowrap">
                                 {tag}
                             </span>
                         ))}
                     </div>
-                    <h4 className="font-bold text-xl text-[#231F20] mb-2 line-clamp-1">{product.name}</h4>
-                    <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed flex-grow">{product.desc}</p>
+                    <h4 className="font-bold text-base md:text-xl text-[#231F20] mb-2 leading-tight">{product.name}</h4>
+                    <p className="text-gray-500 text-xs md:text-sm leading-relaxed flex-grow">{product.desc}</p>
                 </div>
             </Link>
         </motion.div>
@@ -109,7 +109,7 @@ const ProductsPage = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
                     {prosalProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
@@ -127,7 +127,7 @@ const ProductsPage = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
                         {hephaProducts.map((product) => (
                             <ProductCard key={product.id} product={product} />
                         ))}
@@ -145,7 +145,7 @@ const ProductsPage = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
                     {otherProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}

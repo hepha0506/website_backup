@@ -26,13 +26,11 @@ const ProductsPageEn = () => {
 
     // We use useState to keep the random counts consistent across re-renders
     const [counts] = useState({
+        newTechnology: getRandomCount(4, 6),
         cutResistance: getRandomCount(4, 6),
-        esdCopper: getRandomCount(4, 6),
-        esdCarbon: getRandomCount(4, 6),
-        esdNylon: getRandomCount(4, 6),
+        esdAntiStatic: getRandomCount(4, 6),
         heatResistance: getRandomCount(4, 6),
         generalPurpose: getRandomCount(4, 6),
-        newTechnology: getRandomCount(4, 6),
     });
 
     // Generator function for products
@@ -49,40 +47,31 @@ const ProductsPageEn = () => {
     // Placeholder data generators using the random counts
     const categories = [
         {
+            id: 'new-technology',
+            title: 'New Technology',
+            subtitle: 'INNOVATION',
+            colorName: 'text-purple-600',
+            borderColor: 'border-purple-600',
+            bgColor: '',
+            products: generateProducts('Tech Innovator', 'tech', counts.newTechnology, "Next-generation gloves featuring our latest patented technologies", ["Eco-friendly", "Smart Touch"])
+        },
+        {
             id: 'cut-resistance',
             title: 'Cut Resistance',
             subtitle: 'PREMIUM PROTECTION',
             colorName: 'text-[#50B849]',
             borderColor: 'border-[#231F20]',
-            bgColor: '',
+            bgColor: 'bg-gray-50',
             products: generateProducts('Cut Resistant', 'cut', counts.cutResistance, "High-strength cut resistant premium work gloves", ["Cut Resistant", "Anti-Slip"])
         },
         {
-            id: 'esd-copper',
-            title: 'ESD Copper',
-            subtitle: 'ANTI-STATIC',
-            colorName: 'text-yellow-600',
-            borderColor: 'border-yellow-600',
-            bgColor: 'bg-gray-50',
-            products: generateProducts('ESD Copper', 'esd-cu', counts.esdCopper, "Copper fiber gloves with excellent anti-static properties", ["ESD", "Copper"])
-        },
-        {
-            id: 'esd-carbon',
-            title: 'ESD Carbon',
-            subtitle: 'ANTI-STATIC',
-            colorName: 'text-gray-800',
-            borderColor: 'border-gray-800',
-            bgColor: '',
-            products: generateProducts('ESD Carbon', 'esd-ca', counts.esdCarbon, "Carbon fiber gloves for reliable static control", ["ESD", "Carbon"])
-        },
-        {
-            id: 'esd-nylon',
-            title: 'ESD Nylon',
+            id: 'esd-anti-static',
+            title: 'ESD Anti-static',
             subtitle: 'ANTI-STATIC',
             colorName: 'text-blue-600',
             borderColor: 'border-blue-600',
-            bgColor: 'bg-gray-50',
-            products: generateProducts('ESD Nylon', 'esd-ny', counts.esdNylon, "Comfortable nylon gloves with static dissipation", ["ESD", "Nylon"])
+            bgColor: '',
+            products: generateProducts('ESD Anti-static', 'esd', counts.esdAntiStatic, "High-performance anti-static gloves (Copper/Carbon/Nylon options)", ["ESD", "Static Control"])
         },
         {
             id: 'heat-resistance',
@@ -90,7 +79,7 @@ const ProductsPageEn = () => {
             subtitle: 'THERMAL PROTECTION',
             colorName: 'text-red-500',
             borderColor: 'border-red-500',
-            bgColor: '',
+            bgColor: 'bg-gray-50',
             products: generateProducts('Heat Resistant', 'heat', counts.heatResistance, "Specialized gloves for high-temperature work environments", ["Heat Resistant", "Safety"])
         },
         {
@@ -99,17 +88,8 @@ const ProductsPageEn = () => {
             subtitle: 'MULTI PURPOSE',
             colorName: 'text-orange-500',
             borderColor: 'border-gray-300',
-            bgColor: 'bg-gray-50',
-            products: generateProducts('General Purpose', 'gen', counts.generalPurpose, "Versatile gloves for various daily tasks and light industrial work", ["Multi-purpose", "Durable"])
-        },
-        {
-            id: 'new-technology',
-            title: 'New Technology',
-            subtitle: 'INNOVATION',
-            colorName: 'text-purple-600',
-            borderColor: 'border-purple-600',
             bgColor: '',
-            products: generateProducts('Tech Innovator', 'tech', counts.newTechnology, "Next-generation gloves featuring our latest patented technologies", ["Eco-friendly", "Smart Touch"])
+            products: generateProducts('General Purpose', 'gen', counts.generalPurpose, "Versatile gloves for various daily tasks and light industrial work", ["Multi-purpose", "Durable"])
         }
     ];
 
@@ -141,14 +121,14 @@ const ProductsPageEn = () => {
     const ProductCard = ({ product }) => (
         <motion.div
             whileHover={{ y: -5 }}
-            className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col h-full cursor-pointer cursor-default hover:border-[#50B849]"
+            className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col h-full cursor-pointer hover:border-[#50B849]"
         >
             <Link to={`/products/${product.id}`} className="flex flex-col h-full w-full">
                 {/* Image Container */}
-                <div className="bg-white p-6 aspect-square flex items-center justify-center relative overflow-hidden">
+                <div className="bg-white p-4 md:p-6 aspect-square flex items-center justify-center relative overflow-hidden">
                     {/* Dark overlay and text shown on hover */}
                     <div className="absolute inset-0 group-hover:bg-black/50 transition-colors duration-300 z-20 flex items-center justify-center">
-                        <span className="text-white font-bold tracking-wider text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg">View Details</span>
+                        <span className="text-white font-bold tracking-wider text-sm md:text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg text-center px-2">View Details</span>
                     </div>
                     <img
                         src={product.image}
@@ -157,16 +137,16 @@ const ProductsPageEn = () => {
                     />
                 </div>
                 {/* Content */}
-                <div className="p-6 flex flex-col flex-grow bg-gray-50/30">
-                    <div className="flex gap-2 mb-3">
+                <div className="p-4 md:p-6 flex flex-col flex-grow bg-gray-50/30">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3">
                         {product.tags.map((tag, idx) => (
-                            <span key={idx} className="px-2.5 py-1 bg-white border border-[#50B849]/30 text-[#50B849] text-xs rounded-md font-bold whitespace-nowrap">
+                            <span key={idx} className="px-2 py-0.5 md:px-2.5 md:py-1 bg-white border border-[#50B849]/30 text-[#50B849] text-[10px] md:text-xs rounded-md font-bold whitespace-nowrap">
                                 {tag}
                             </span>
                         ))}
                     </div>
-                    <h4 className="font-bold text-xl text-[#231F20] mb-2 line-clamp-1">{product.name}</h4>
-                    <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed flex-grow">{product.desc}</p>
+                    <h4 className="font-bold text-base md:text-xl text-[#231F20] mb-2 leading-tight">{product.name}</h4>
+                    <p className="text-gray-500 text-xs md:text-sm leading-relaxed flex-grow">{product.desc}</p>
                 </div>
             </Link>
         </motion.div>
@@ -204,7 +184,7 @@ const ProductsPageEn = () => {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
                             {category.products.map((product) => (
                                 <ProductCard key={product.id} product={product} />
                             ))}

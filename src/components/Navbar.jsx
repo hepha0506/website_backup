@@ -41,14 +41,12 @@ const Navbar = () => {
             name: 'Products',
             href: '/en/products',
             dropdown: [
+                { name: 'New technology', href: '/en/products#new-technology', isInternal: true },
                 { name: 'Cut resistance', href: '/en/products#cut-resistance', isInternal: true },
-                { name: 'ESD copper', href: '/en/products#esd-copper', isInternal: true },
-                { name: 'ESD carbon', href: '/en/products#esd-carbon', isInternal: true },
-                { name: 'ESD nylon', href: '/en/products#esd-nylon', isInternal: true },
+                { name: 'ESD Anti-static', href: '/en/products#esd-anti-static', isInternal: true },
                 { name: 'Heat resistance', href: '/en/products#heat-resistance', isInternal: true },
                 { name: 'General purpose', href: '/en/products#general-purpose', isInternal: true },
-                { name: 'New technology', href: '/en/products#new-technology', isInternal: true },
-                { name: 'Brochure', href: '#', isInternal: true }
+                { name: 'Brochure', href: '/en/products#brochure', isInternal: true }
             ]
         },
         {

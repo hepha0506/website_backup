@@ -1,6 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const AboutEn = () => {
+    const [activeHistoryTab, setActiveHistoryTab] = useState('History');
+
+    const historyData = [
+        { year: "2012", text: "Achieving of GSA MAS" },
+        { year: "2009", text: "Building up the new factory" },
+        { year: "2004", text: "Moved the main office." },
+        { year: "2002", text: "Achieved CE MARK." },
+        { year: "2001", text: "Achieved ISO9001." },
+        { year: "1999", text: "Heungje Glove Industrial Co. and Daekyung Industrial Co. were incorporated to establish Heungje International Corp. as a corporate Body." },
+        { year: "1995", text: "Daekyung International Co. for Trade Business was established under Heungje." },
+        { year: "1960", text: "Established as Heungje Glove Industrial Co. in Daegu, Korea." },
+    ];
+
+    const meritsData = [
+        { year: "2011", text: 'Awarded "Tower of the million dollar for export" from Mayor of Daegu city' },
+        { year: "2009", text: '"Authentication of merit for Korea and Japan" from the minister for Ministry of Knowledge and Economy' },
+        { year: "2006.11", text: 'Received "The best business man of the year "award from the Prime Minister.' },
+        { year: "2006.11", text: 'Presidential award "Tower of five million dollar" for outstanding trade performance.' },
+        { year: "2006", text: 'Selected "Export Package Tour" Co. of small & medium-sized business enterprises.' },
+        { year: "2004", text: 'Presidential award for outstanding trade - performance' },
+        { year: "2003.6", text: 'Awarded Good Design Mark from Ministry of Commerce, Industry and Energy' },
+        { year: "2002.2", text: 'Designated by Medium Industry bank as its "Family member"' },
+        { year: "2001.1", text: 'Designated by Export Insurance bank as the best Co. to receive beneficial support' },
+        { year: "2000", text: 'Designated by Export promotion Center as a promising export. co. of small and medium size enterprise' },
+        { year: "1999", text: 'Designated by Deagu City as a prominent Co. of Small and Medium Size enterprises to lead a new millenium' },
+        { year: "1998.3", text: 'Awarded the letter of Appreciation by chairman of Korea Trade Association for outstanding trade performance' },
+        { year: "1998.2", text: 'Awarded the letter of Appreciation by Minister of the Ministry of commerce and Commerce and Industry' },
+        { year: "1998.1", text: 'Presidential award "Tower of three million dollar" for outstanding trade performance' },
+        { year: "1996", text: 'Designated by Daegu city as a certified holder of Chimeric brand' },
+        { year: "1995~99", text: 'Received "The best business man of the year "award from mayor of Daegu city for 5 times consecutively' },
+        { year: "1980", text: 'Received "The best business man of the year "award from Kyungbuk provincial Knit-wear Association' },
+    ];
+
+    const productsData = [
+        { year: "2013", text: "DMF free PU gloves - patent" },
+        { year: "2011", text: "EF(eco friendly) glove, silicon free, DMF free" },
+        { year: "2009", text: "Washed PU coated gloves" },
+        { year: "2006", text: "Cut Resistant 5 Glove (CUT LEVEL: 5)" },
+        { year: "2001", text: "Achieved PU glove with wave crease (Design patent No. 0299430)" },
+        { year: "2001", text: 'Achieved utility model patent NO.024614 for developing "control drum" of glove knitting machine.' },
+        { year: "1985", text: "Mink glove and mink yarn." },
+        { year: "1980", text: "Angora glove with 80% angora yarn." },
+        { year: "1965", text: "Napped(Brushed up) glove, the first in the world." },
+    ];
+
     return (
         <main className="bg-white">
             {/* Top Banner */}
@@ -28,6 +73,14 @@ const AboutEn = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div>
+                        <div className="mb-8 rounded-2xl overflow-hidden shadow-md">
+                            <img
+                                src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop"
+                                alt="CEO Portrait"
+                                className="w-full h-48 md:h-64 lg:h-72 object-cover object-[center_30%]"
+                            />
+                        </div>
+
                         <p className="text-gray-600 leading-relaxed mb-6">
                             Since our establishment, we have grown into a leading company specializing in industrial gloves through continuous research, development, and quality innovation. Following our management philosophy of 'Taking responsibility for customer safety with the best technology', we provide high-quality safety equipment optimized for all industrial sites.
                         </p>
@@ -37,8 +90,11 @@ const AboutEn = () => {
                         <p className="mt-8 font-bold text-lg text-[#231F20]">CEO</p>
                     </div>
 
-                    <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                        <ul className="space-y-6">
+                    <div className="bg-gray-50 rounded-2xl p-8 md:p-10 border border-gray-100 flex flex-col h-full">
+                        <div className="flex justify-center items-center mb-8 pb-8 border-b border-gray-200">
+                            <img src="/logo02.jpg" alt="HEUNGJE INT" className="h-16 object-contain mix-blend-multiply" />
+                        </div>
+                        <ul className="space-y-6 flex-grow flex flex-col justify-center">
                             <li className="flex border-b border-gray-200 pb-4">
                                 <span className="w-32 font-bold text-gray-800">Company</span>
                                 <span className="text-gray-600">Heungje Int.</span>
@@ -64,31 +120,41 @@ const AboutEn = () => {
                 </div>
             </section>
 
-            {/* 2. History */}
+            {/* 2. History Tabs */}
             <section className="py-24 bg-gray-50">
-                <div className="max-w-4xl mx-auto px-6">
-                    <div className="mb-16 text-center">
-                        <span className="text-[#50B849] font-medium text-lg mb-2 block">History</span>
+                <div className="max-w-5xl mx-auto px-6">
+                    <div className="mb-12 text-center">
+                        <span className="text-[#50B849] font-medium text-lg mb-2 block">Our Journey</span>
                         <h2 className="text-3xl md:text-4xl font-bold text-[#231F20]">Company History</h2>
                     </div>
 
+                    {/* Tabs */}
+                    <div className="flex flex-wrap justify-center mb-16 gap-2 md:gap-4">
+                        {['History', 'Merits and awards', 'Development of new products'].map((tab) => (
+                            <button
+                                key={tab}
+                                onClick={() => setActiveHistoryTab(tab)}
+                                className={`px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all duration-300 ${activeHistoryTab === tab
+                                    ? 'bg-[#50B849] text-white shadow-md'
+                                    : 'bg-white text-gray-500 border border-gray-200 hover:border-[#50B849] hover:text-[#50B849]'
+                                    }`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Timeline */}
                     <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent">
-                        {[
-                            { year: "2024", text: "Acquired ISO 14001 Certification & Launched Eco-friendly Lineup" },
-                            { year: "2020", text: "Established Overseas Factory & Global Production Base" },
-                            { year: "2015", text: "Expanded R&D Center & Acquired New Coating Technology Patent" },
-                            { year: "2005", text: "Acquired ISO 9001 Quality Management System Certification" },
-                            { year: "1990", text: "Awarded Excellent SME in Safety Glove Sector" },
-                            { year: "1960", text: "Corporation Established" },
-                        ].map((item, index) => (
+                        {(activeHistoryTab === 'History' ? historyData : activeHistoryTab === 'Merits and awards' ? meritsData : productsData).map((item, index) => (
                             <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-[#50B849] text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow absolute left-0 md:left-1/2 -translate-x-1/2">
+                                <div className={`flex items-center justify-center w-10 h-10 rounded-full border border-white text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow absolute left-0 md:left-1/2 -translate-x-1/2 ${activeHistoryTab === 'History' ? 'bg-[#50B849]' : activeHistoryTab === 'Merits and awards' ? 'bg-blue-500' : 'bg-orange-500'}`}>
                                     <div className="w-3 h-3 bg-white rounded-full"></div>
                                 </div>
                                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-white border border-gray-100 shadow-sm ml-12 md:ml-0 hover:shadow-md transition-shadow">
                                     <div className="flex flex-col">
-                                        <span className="font-bold text-2xl text-[#50B849] mb-2">{item.year}</span>
-                                        <p className="text-gray-700">{item.text}</p>
+                                        <span className={`font-bold text-2xl mb-2 ${activeHistoryTab === 'History' ? 'text-[#50B849]' : activeHistoryTab === 'Merits and awards' ? 'text-blue-500' : 'text-orange-500'}`}>{item.year}</span>
+                                        <p className="text-gray-700 leading-relaxed font-medium">{item.text}</p>
                                     </div>
                                 </div>
                             </div>
@@ -246,28 +312,92 @@ const AboutEn = () => {
                 </div>
             </section>
 
-            {/* 7. Export Regions */}
-            <section className="py-24 max-w-7xl mx-auto px-6">
+            {/* 7. Export Regions / Global Network */}
+            <section className="py-24 max-w-7xl mx-auto px-6 overflow-hidden">
                 <div className="mb-16 text-center">
                     <span className="text-[#50B849] font-medium text-lg mb-2 block">Export Regions</span>
                     <h2 className="text-3xl md:text-4xl font-bold text-[#231F20]">Global Network</h2>
-                    <p className="text-gray-500 mt-4 max-w-2xl mx-auto">Supplying world-class products globally through our extensive network.</p>
+                    <p className="text-gray-500 mt-4 max-w-2xl mx-auto">Supplying world-class products to 16 countries globally through our extensive network.</p>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                    {[
-                        { region: "North America", desc: "USA, Canada, Mexico" },
-                        { region: "Europe", desc: "Germany, UK, France, Italy" },
-                        { region: "Asia", desc: "Japan, China, Vietnam, Thailand" },
-                        { region: "Middle East", desc: "UAE, Saudi Arabia, Qatar" },
-                    ].map((exportArea, i) => (
-                        <div key={i} className="bg-white border border-gray-100 rounded-xl hover:border-[#50B849] p-8 text-center transition-all duration-300 shadow-sm hover:shadow-md group">
-                            <div className="w-12 h-12 mx-auto mb-4 text-[#50B849] bg-green-50 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <h4 className="font-bold text-lg mb-2">{exportArea.region}</h4>
-                            <p className="text-xs text-gray-500">{exportArea.desc}</p>
+
+                <div className="relative w-full aspect-[4/3] md:aspect-[2/1] bg-[#f8fafc] rounded-3xl border border-gray-200 shadow-inner group">
+                    {/* Real World Map Background */}
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg"
+                        alt="World Map Background"
+                        className="absolute inset-0 w-full h-full object-fill opacity-20 filter grayscale pointer-events-none p-4 md:p-8"
+                    />
+
+                    {/* Faint Continents shapes using absolute positioned SVGs or just rely on CSS dots to form the map */}
+
+                    <svg className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+                        {[
+                            { name: "Japan", x: 85, y: 39 },
+                            { name: "China", x: 73, y: 40 },
+                            { name: "Vietnam", x: 74, y: 50 },
+                            { name: "Malaysia", x: 74, y: 58 },
+                            { name: "Australia", x: 82, y: 78 },
+                            { name: "Russia", x: 65, y: 22 },
+                            { name: "Finland", x: 52, y: 20 },
+                            { name: "England", x: 46, y: 31 },
+                            { name: "Germany", x: 50, y: 32 },
+                            { name: "Poland", x: 52, y: 31 },
+                            { name: "France", x: 48, y: 34 },
+                            { name: "Hungary", x: 52, y: 35 },
+                            { name: "Canada", x: 22, y: 25 },
+                            { name: "USA", x: 21, y: 38 },
+                            { name: "Mexico", x: 18, y: 48 },
+                            { name: "Brazil", x: 32, y: 72 },
+                        ].map((loc, i) => (
+                            <line
+                                key={i}
+                                x1="80%"
+                                y1="38%"
+                                x2={`${loc.x}%`}
+                                y2={`${loc.y}%`}
+                                stroke="#50B849"
+                                strokeWidth="1.5"
+                                strokeOpacity="0.4"
+                                strokeDasharray="4 4"
+                                className="animate-pulse"
+                            />
+                        ))}
+                    </svg>
+
+                    {/* Markers */}
+                    <div className="absolute inset-0 z-20">
+                        {/* Hub: Korea */}
+                        <div className="absolute w-4 h-4 rounded-full bg-[#50B849] -ml-2 -mt-2 shadow-[0_0_20px_rgba(80,184,73,1)] z-30" style={{ left: '80%', top: '38%' }}>
+                            <div className="absolute inset-0 rounded-full bg-[#50B849] animate-ping opacity-75"></div>
+                            <span className="absolute top-5 left-1/2 -translate-x-1/2 text-[10px] md:text-sm font-black text-gray-800 bg-white/90 px-2 py-0.5 rounded shadow whitespace-nowrap">Korea</span>
                         </div>
-                    ))}
+
+                        {/* Partner Countries */}
+                        {[
+                            { name: "Japan", x: 85, y: 39 },
+                            { name: "China", x: 73, y: 40 },
+                            { name: "Vietnam", x: 74, y: 50 },
+                            { name: "Malaysia", x: 74, y: 58 },
+                            { name: "Australia", x: 82, y: 78 },
+                            { name: "Russia", x: 65, y: 22 },
+                            { name: "Finland", x: 52, y: 20 },
+                            { name: "England", x: 46, y: 31 },
+                            { name: "Germany", x: 50, y: 32 },
+                            { name: "Poland", x: 52, y: 31 },
+                            { name: "France", x: 48, y: 34 },
+                            { name: "Hungary", x: 52, y: 35 },
+                            { name: "Canada", x: 22, y: 25 },
+                            { name: "USA", x: 21, y: 38 },
+                            { name: "Mexico", x: 18, y: 48 },
+                            { name: "Brazil", x: 32, y: 72 },
+                        ].map((loc, i) => (
+                            <div key={i} className="absolute w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#50B849]/80 -ml-1 -mt-1 md:-ml-1.5 md:-mt-1.5 transition-transform hover:scale-150 cursor-pointer group" style={{ left: `${loc.x}%`, top: `${loc.y}%` }}>
+                                <span className="absolute top-3 md:top-4 left-1/2 -translate-x-1/2 text-[8px] md:text-xs font-bold text-gray-600 bg-white/80 px-1 md:px-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-sm">
+                                    {loc.name}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
