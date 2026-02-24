@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+    const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
 
     const location = useLocation();
     const isEn = location.pathname.startsWith('/en');
@@ -59,7 +59,9 @@ const Navbar = () => {
                 { name: 'Smart touch', href: '/en/technology#smart-touch', isInternal: true },
                 { name: 'Easy grip', href: '/en/technology#easy-grip', isInternal: true },
                 { name: 'ESD protection', href: '/en/technology#esd-protection', isInternal: true },
-                { name: 'Coreless, Eco- friendly, Highest level protection', href: '/en/technology#coreless', isInternal: true }
+                { name: 'Coreless', href: '/en/technology#coreless', isInternal: true },
+                { name: 'Eco-friendly', href: '/en/technology#eco-friendly', isInternal: true },
+                { name: 'High level protection', href: '/en/technology#high-level-protection', isInternal: true }
             ]
         },
         { name: 'Certifications & Patents', href: '/en/certifications' },
@@ -176,13 +178,13 @@ const Navbar = () => {
                             {link.dropdown ? (
                                 <div className="space-y-1">
                                     <button
-                                        onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+                                        onClick={() => setOpenMobileDropdown(openMobileDropdown === link.name ? null : link.name)}
                                         className="flex items-center justify-between w-full py-3 text-base font-bold text-[#231F20]"
                                     >
                                         {link.name}
-                                        <ChevronDown className={`w-5 h-5 transition-transform ${isMobileDropdownOpen ? 'rotate-180 text-[#50B849]' : ''}`} />
+                                        <ChevronDown className={`w-5 h-5 transition-transform ${openMobileDropdown === link.name ? 'rotate-180 text-[#50B849]' : ''}`} />
                                     </button>
-                                    <div className={`flex flex-col space-y-1 pl-4 overflow-hidden transition-all duration-300 ${isMobileDropdownOpen ? 'max-h-64 opacity-100 pb-2' : 'max-h-0 opacity-0'}`}>
+                                    <div className={`flex flex-col space-y-1 pl-4 overflow-hidden transition-all duration-300 ${openMobileDropdown === link.name ? 'max-h-[500px] opacity-100 pb-2' : 'max-h-0 opacity-0'}`}>
                                         {link.dropdown.map((subItem) => (
                                             subItem.isInternal ? (
                                                 <Link

@@ -82,13 +82,33 @@ const TechnologyEn = () => {
         },
         {
             id: 'coreless',
-            title: 'Coreless & Eco-friendly',
-            subtitle: 'Highest Level Protection',
-            desc: 'Innovation meets sustainability. Our Coreless technology removes harsh fiberglass elements while achieving the highest cut resistance level. It provides a skin-friendly, incredibly soft experience that actively reduces our environmental footprint.',
-            bgImage: 'https://images.unsplash.com/photo-1621451537084-482c73073e0f?q=80&w=1974&auto=format&fit=crop', // Nature, eco-friendly, green vibe
-            overlay: 'bg-black/40 backdrop-blur-[2px]',
+            title: 'Coreless',
+            subtitle: 'Skin-Friendly Comfort',
+            desc: 'Our Coreless technology removes harsh fiberglass and steel elements while maintaining exceptional durability. It provides an incredibly soft, irritation-free experience that feels as comfortable as a second skin without compromising safety.',
+            bgImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
+            overlay: 'bg-gradient-to-t from-black/80 via-black/30 to-transparent',
             textColor: 'text-white',
             align: 'center'
+        },
+        {
+            id: 'eco-friendly',
+            title: 'Eco-Friendly',
+            subtitle: 'Sustainable Innovation',
+            desc: 'We are committed to a greener future. Our sustainable manufacturing processes actively reduce our environmental footprint by utilizing eco-conscious materials, ensuring you protect the earth while protecting your hands.',
+            bgImage: 'https://images.unsplash.com/photo-1621451537084-482c73073e0f?q=80&w=1974&auto=format&fit=crop',
+            overlay: 'bg-black/40 backdrop-blur-[2px]',
+            textColor: 'text-white',
+            align: 'right'
+        },
+        {
+            id: 'high-level-protection',
+            title: 'High Level Protection',
+            subtitle: 'Uncompromising Safety',
+            desc: 'Engineered for the most demanding environments, this technology achieves the highest cut resistance levels available. It provides maximum defense against severe lacerations, shielding you from extreme occupational hazards.',
+            bgImage: 'https://images.unsplash.com/photo-1541888086925-ebcf13b3e34b?q=80&w=2073&auto=format&fit=crop',
+            overlay: 'bg-gradient-to-r from-gray-900/80 to-transparent',
+            textColor: 'text-white',
+            align: 'left'
         }
     ];
 
